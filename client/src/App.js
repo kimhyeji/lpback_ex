@@ -1,3 +1,28 @@
+// import React from "react";
+
+// import { ApolloProvider } from "@apollo/react-hooks";
+// import ApolloClient from "apollo-client";
+// import { InMemoryCache } from "apollo-cache-inmemory";
+// import { createHttpLink } from "apollo-link-http";
+
+// import Continents from "./Continents";
+
+// const client = new ApolloClient({
+//   link: createHttpLink({ uri: "https://countries.trevorblades.com" }),
+//   cache: new InMemoryCache(),
+// });
+
+// function App() {
+//   return (
+//     <ApolloProvider client={client}>
+//       <h1>React + Apollo Hooks</h1>
+//       <Continents />
+//     </ApolloProvider>
+//   );
+// }
+
+// export default App;
+
 import React, { Component } from "react";
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
@@ -7,20 +32,20 @@ import { HttpLink } from "apollo-link-http";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 
-import './App.css'
+import "./App.css";
 import Home from "./Pages/Home";
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000"
+  uri: "http://localhost:4000",
 });
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/graphql`,
   options: {
-    reconnect: true
-  }
+    reconnect: true,
+  },
 });
 
 // using the ability to split links, you can send data to each link
@@ -37,7 +62,7 @@ const link = split(
 
 const client = new ApolloClient({
   link,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 class App extends Component {

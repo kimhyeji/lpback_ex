@@ -40,18 +40,18 @@ const queries = {
         color
       }
     }
-    `
+    `,
 };
 
-const makeHttpRequest = async component => {
+const makeHttpRequest = async (component) => {
   const options = {
     url: "http://localhost:4000",
     method: "post",
     data: {
       operationName: null,
       variables: {},
-      query: queries[component]
-    }
+      query: queries[component],
+    },
   };
   await axios(options);
 };

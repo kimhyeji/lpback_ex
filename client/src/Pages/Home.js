@@ -3,8 +3,15 @@ import Row from "antd/lib/row";
 import Col from "antd/lib/col";
 
 import CpuUsage from "../components/CpuUsage";
-import Header from "../components/Header";
 import Traffic from "../components/Traffic";
+import RealTime from "../components/RealTime";
+import RTLine from "../components/RTLine";
+import RTStack from "../components/RTStack";
+import RTBrush from "../components/RTBrush";
+import TimeseriesChart from "../components/TimeseriesChart";
+// import ApexChart from "../components/ApexChart";
+
+import Header from "../components/Header";
 import Distribution from "../components/Distribution";
 import Messages from "../components/Messages";
 
@@ -17,7 +24,7 @@ const Label = ({ title }) => (
       height: 35,
       textAlign: "center",
       fontSize: "1.3em",
-      padding: 4
+      padding: 4,
     }}
   >
     {title}
@@ -36,20 +43,48 @@ export default class Home extends Component {
               <CpuUsage />
               <Label title="Avg CPU Usage" />
             </Col>
-            <Col span={12}>
+
+            <Col span={24}>
               <Traffic />
               <Label title="Traffic heartbeat" />
             </Col>
-            <Col span={6}>
+
+            <Col span={24}>
+              <RealTime />
+              <Label title="RealTime heartbeat" />
+            </Col>
+
+            <Col span={24}>
+              <RTLine />
+              <Label title="RTLine heartbeat" />
+            </Col>
+            <Col span={24}>
+              <RTStack />
+              <Label title="RTStack heartbeat" />
+            </Col>
+            <Col span={24}>
+              <RTBrush />
+              <Label title="RTBrush heartbeat" />
+            </Col>
+            {/* <Col span={24}>
+              <TimeseriesChart />
+              <Label title="Timeseries heartbeat" />
+            </Col> */}
+            {/* <Col span={24}>
+              <ApexChart />
+              <Label title="ApexChart heartbeat" />
+            </Col> */}
+
+            {/* <Col span={6}>
               <Distribution />
               <Label title="Region Distribution" />
-            </Col>
+            </Col> */}
           </Row>
           <br />
-          <h2>Alerts</h2>
+          {/* <h2>Alerts</h2>
           <Row type="flex" gutter={8}>
             <Messages />
-          </Row>
+          </Row> */}
         </div>
       </div>
     );

@@ -27,7 +27,10 @@ class CpuUsage extends Component {
   }
 
   getData(percent) {
-    return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
+    return [
+      { x: 1, y: percent },
+      { x: 2, y: 100 - percent },
+    ];
   }
 
   render() {
@@ -44,7 +47,7 @@ class CpuUsage extends Component {
           style={{
             axis: { stroke: "transparent" },
             ticks: { stroke: "transparent" },
-            tickLabels: { fill: "transparent" }
+            tickLabels: { fill: "transparent" },
           }}
         />
         <VictoryPie
@@ -59,8 +62,8 @@ class CpuUsage extends Component {
               fill: ({ datum }) => {
                 const color = datum.y > 60 ? "#d35400" : "#27ae60";
                 return datum.x === 1 ? color : "transparent";
-              }
-            }
+              },
+            },
           }}
         />
         <VictoryLabel
@@ -88,7 +91,7 @@ const CpuUsageContainer = () => (
               updateQuery: (prev, { subscriptionData }) => {
                 if (!subscriptionData.data) return prev;
                 return subscriptionData.data;
-              }
+              },
             })
           }
         />

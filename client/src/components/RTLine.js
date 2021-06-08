@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { VictoryLine, VictoryContainer } from "victory";
+import { VictoryChart, VictoryTheme, VictoryLine } from "victory";
 
 import Loading from "./Loading";
 
@@ -29,7 +29,7 @@ const SUBSCRIPTION = gql`
   }
 `;
 
-class Traffic extends Component {
+class RTLine extends Component {
   componentDidMount() {
     this.props.subscribeToNewData();
   }
@@ -43,30 +43,28 @@ class Traffic extends Component {
       return <p>Error!</p>;
     }
     return (
-      <VictoryLine
-        standalone={true}
-        height={300}
-        width={1000}
-        style={{
-          data: { stroke: "#27ae60" },
-        }}
-        data={data.traffic.dps.map((item) => ({
-          x: item.timestamp,
-          y: item.value,
-        }))}
-        containerComponent={<VictoryContainer responsive={true} />}
-      />
+      <VictoryChart theme={VictoryTheme.material} width={1000}>
+        <VictoryLine
+          style={{
+            data: { stroke: "rgb(255, 85, 136)" },
+          }}
+          data={data.traffic.dps.map((item) => ({
+            x: item.timestamp,
+            y: item.value,
+          }))}
+        />
+      </VictoryChart>
     );
   }
 }
 
-export default class TrafficContainer extends Component {
+export default class RTLineContainer extends Component {
   render() {
     return (
       <div style={{ border: "1px solid #2c3e50", height: 300 }}>
         <Query query={QUERY}>
           {({ subscribeToMore, ...result }) => (
-            <Traffic
+            <RTLine
               {...result}
               subscribeToNewData={() =>
                 subscribeToMore({
